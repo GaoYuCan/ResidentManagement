@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+
+<form action="/register" method="post">
+    <div>
+        <label for="email">邮箱：</label>
+        <input type="email" name="email" id="email" required>
+    </div>
+    <div>
+        <label for="username">用户名：</label>
+        <input type="text" name="username" id="username" required>
+    </div>
+    <div>
+        <label>性别：
+            <input type="radio" name="gender" id="gender-man" value="男">男
+            <input type="radio" name="gender" id="gender-woman" value="女">女
+        </label>
+    </div>
+    <div>
+        <label for="password">密码：</label>
+        <input type="password" name="password" id="password">
+    </div>
+    <div>
+        <label> 验证码：
+            <img src="#" alt="验证码" id="captcha-img">
+            <input type="text" name="captcha" id="captcha">
+        </label>
+    </div>
+    <div>
+        <input type="submit" value="注册">
+        <span>已有账号?<a href="/login">去登录</a></span>
+    </div>
+    <span><strong th:text="${message}"></strong></span>
+</form>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    const captcha = $("#captcha-img")
+    window.addEventListener('load', () => {
+        captcha.attr("src", `/user/captcha?r=${Math.random()}`)
+    }, false)
+    captcha.click(() => {
+        captcha.attr("src", `/user/captcha?r=${Math.random()}`)
+    })
+</script>
+</html>

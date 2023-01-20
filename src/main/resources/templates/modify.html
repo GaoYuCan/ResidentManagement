@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加</title>
+</head>
+<body>
+<form th:action="${'/modify/' + resident.idCN}" method="post">
+    <div>
+        <label for="idCN">身份证号：</label>
+        <input type="text" name="idCN" id="idCN" th:value="${resident.idCN}" disabled>
+    </div>
+    <div>
+        <label for="name">姓名：</label>
+        <input type="text" name="name" id="name" th:value="${resident.name}">
+    </div>
+    <div>
+        <label>性别：
+            <input type="radio" name="gender" value="男" id="gender-man" th:checked="${resident.gender.equals('男')}">男
+            <input type="radio" name="gender" value="女" id="gender-woman" th:checked="${resident.gender.equals('女')}">女
+        </label>
+    </div>
+    <div>
+        <label for="birthday">出生日期：</label>
+        <input type="date" name="birthday" id="birthday" th:value="${resident.getBirthdayStr('yyyy-MM-dd')}">
+    </div>
+    <div>
+        <label>地址：
+            <input type="text" name="province" id="province" th:value="${resident.province}">省
+            <input type="text" name="city" id="city" th:value="${resident.city}">市
+            <input type="text" name="county" id="county" th:value="${resident.county}">县/区
+        </label>
+    </div>
+    <div>
+        <label for="address">详细地址：</label>
+        <input type="text" name="address" id="address" th:value="${resident.address}">
+    </div>
+    <div>
+        <label for="phone">手机号：</label>
+        <input type="tel" name="phone" id="phone" th:value="${resident.phone}">
+    </div>
+    <div>
+        <input type="submit" value="修改">
+    </div>
+    <span><strong th:text="${message}"></strong></span>
+</form>
+</body>
+</html>
